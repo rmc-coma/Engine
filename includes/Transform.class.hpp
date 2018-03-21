@@ -6,7 +6,7 @@
 //   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/16 21:09:34 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/20 05:44:32 by rmc-coma         ###   ########.fr       //
+//   Updated: 2018/03/21 00:04:57 by rmc-coma         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -40,9 +40,9 @@ protected:
 
 private:
 
-	qm::vec4<GLfloat>	Position;
-	qm::vec4<GLfloat>	Rotation;
-	qm::vec3<GLfloat>	Scale;
+	qm::vec4<GLfloat>	_Position;
+	qm::vec4<GLfloat>	_Rotation;
+	qm::vec3<GLfloat>	_Scale;
 
 };
 

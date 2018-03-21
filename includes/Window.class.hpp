@@ -6,7 +6,7 @@
 //   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/20 03:25:06 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/20 05:42:09 by rmc-coma         ###   ########.fr       //
+//   Updated: 2018/03/21 00:05:43 by rmc-coma         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -43,13 +43,13 @@ public:
 private:
 	Window(void);
 
-	const char		*title;
-	int				x;
-	int				y;
-	int				width;
-	int				height;
-	Uint32			flags;
-	SDL_Window		*sdl_ptr;
+	const char		*_Title;
+	int				_X;
+	int				_Y;
+	int				_Width;
+	int				_Height;
+	Uint32			_Flags;
+	SDL_Window		*_SDL_Ptr;
 };
 
 #endif

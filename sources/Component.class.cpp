@@ -1,53 +1,41 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   GameObject.class.cpp                               :+:      :+:    :+:   //
+//   Component.class.cpp                                :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/17 00:42:47 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 00:19:06 by rmc-coma         ###   ########.fr       //
+//   Created: 2018/03/20 20:49:22 by rmc-coma          #+#    #+#             //
+//   Updated: 2018/03/21 00:17:22 by rmc-coma         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include "GameObject.class.hpp"
 #include "Component.class.hpp"
 
-GameObject::GameObject(void) : _Name("Unnamed")
+Component::Component(void) : _GameObject(*(new GameObject()))
 {
 	return ;
 }
 
-GameObject::GameObject(const std::string &name) : _Name(name)
+Component::Component(const GameObject &gameobject) : _GameObject(gameobject)
 {
 	return ;
 }
 
-GameObject::GameObject(const GameObject &other)
+Component::Component(const Component &other) : _GameObject(other._GameObject)
 {
 	*this = other;
 	return ;
 }
 
-GameObject::~GameObject(void)
+Component::~Component(void)
 {
 	return ;
 }
 
-GameObject	&GameObject::operator=(const GameObject &other)
+Component	&Component::operator=(const Component &other)
 {
-	this->_Transform = other._Transform;
+	(void)other;
 	return (*this);
-}
-
-void		GameObject::addChild(GameObject &child)
-{
-	this->_Children.push_back(&child);
-	return ;
-}
-
-void		GameObject::addComponent(Component &component)
-{
-	this->_Components.push_back(&component);
-	return ;
 }
