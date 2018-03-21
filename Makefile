@@ -6,7 +6,7 @@
 #    By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 19:14:04 by rmc-coma          #+#    #+#              #
-#    Updated: 2018/03/21 09:39:22 by rmc-coma         ###   ########.fr        #
+#    Updated: 2018/03/21 11:05:44 by rmc-coma         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -55,7 +55,9 @@ SRCS =			\
 				MeshFilter.class.cpp \
 				Mesh.class.cpp \
 				MeshRenderer.class.cpp \
-				Camera.class.cpp
+				Camera.class.cpp \
+				Shader.class.cpp \
+				Program.class.cpp
 
 
 HDRS_FILES =	\
@@ -67,7 +69,9 @@ HDRS_FILES =	\
 				MeshFilter.class.hpp \
 				Mesh.class.hpp \
 				MeshRenderer.class.hpp \
-				Camera.class.hpp
+				Camera.class.hpp \
+				Shader.class.hpp \
+				Program.class.hpp
 
 HDRS =			$(HDRS_FILES:%=$(HDRPATH)%)
 OBJS =			$(SRCS:%.cpp=$(OBJPATH)%.o)
