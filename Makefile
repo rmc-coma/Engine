@@ -6,7 +6,7 @@
 #    By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 19:14:04 by rmc-coma          #+#    #+#              #
-#    Updated: 2018/03/21 05:01:39 by rmc-coma         ###   ########.fr        #
+#    Updated: 2018/03/21 09:39:22 by rmc-coma         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -53,7 +53,9 @@ SRCS =			\
 				GameObject.class.cpp \
 				Component.class.cpp \
 				MeshFilter.class.cpp \
-				Mesh.class.cpp
+				Mesh.class.cpp \
+				MeshRenderer.class.cpp \
+				Camera.class.cpp
 
 
 HDRS_FILES =	\
@@ -63,7 +65,9 @@ HDRS_FILES =	\
 				GameObject.class.hpp \
 				Component.class.hpp \
 				MeshFilter.class.hpp \
-				Mesh.class.hpp
+				Mesh.class.hpp \
+				MeshRenderer.class.hpp \
+				Camera.class.hpp
 
 HDRS =			$(HDRS_FILES:%=$(HDRPATH)%)
 OBJS =			$(SRCS:%.cpp=$(OBJPATH)%.o)
@@ -95,7 +99,6 @@ $(BUILD): $(LIBS) $(OBJS)
 	@$(MAKE) -s -C $(@D) > /dev/null
 
 clean: clean_$(NAME) #clean_libs
-	@/bin/rm -rf $(OBJPATH)
 
 clean_$(NAME):
 	@echo "$(NAME): cleaning..."
@@ -112,6 +115,7 @@ clean_$(NAME):
 fclean: clean_$(NAME) #fclean_libs
 	@/bin/rm -f $(BUILD)
 	@/bin/rm -rf $(BUILDPATH)
+	@/bin/rm -rf $(OBJPATH)
 
 fuckoff: debug
 

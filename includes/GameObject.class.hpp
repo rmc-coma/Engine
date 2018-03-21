@@ -6,7 +6,7 @@
 //   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/17 00:40:35 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 00:18:34 by rmc-coma         ###   ########.fr       //
+//   Updated: 2018/03/21 08:13:12 by rmc-coma         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -14,11 +14,10 @@
 # define GAMEOBJECT_CLASS_HPP
 
 # include "Transform.class.hpp"
+# include "Component.class.hpp"
 
 # include <vector>
 # include <string>
-
-class Component;
 
 class GameObject {
 
@@ -32,6 +31,8 @@ public:
 
 	void		addChild(GameObject &child);
 	void		addComponent(Component &component);
+
+	Component	*getComponent(const t_component_type type) const;
 
 protected:
 

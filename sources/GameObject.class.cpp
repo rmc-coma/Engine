@@ -6,12 +6,11 @@
 //   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/17 00:42:47 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 00:19:06 by rmc-coma         ###   ########.fr       //
+//   Updated: 2018/03/21 08:18:57 by rmc-coma         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include "GameObject.class.hpp"
-#include "Component.class.hpp"
 
 GameObject::GameObject(void) : _Name("Unnamed")
 {
@@ -50,4 +49,14 @@ void		GameObject::addComponent(Component &component)
 {
 	this->_Components.push_back(&component);
 	return ;
+}
+
+Component	*GameObject::getComponent(const t_component_type type) const
+{
+	for (auto it = this->_Components.begin(); it != this->_Components.end(); ++it)
+	{
+		if ((*it)->getType() == type)
+			return (*it);
+	}
+	return (NULL);
 }

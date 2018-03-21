@@ -6,7 +6,7 @@
 //   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/21 00:25:28 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 03:09:02 by rmc-coma         ###   ########.fr       //
+//   Updated: 2018/03/21 06:53:59 by rmc-coma         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,9 +16,9 @@
 # include <string>
 
 # include <OpenGL/gl3.h>
-# include <assimp/cimport.h>
-# include <assimp/scene.h>
-# include <assimp/postprocess.h>
+
+
+struct aiScene;
 
 class Mesh {
 
@@ -29,16 +29,23 @@ public:
 
 	Mesh	&operator=(const Mesh &other);
 
+	GLfloat			*getVertices() const;
+	GLuint			getNVertices() const;
+	GLfloat			*getNormals() const;
+	GLuint			getNNormals() const;
+	GLfloat			*getUVs() const;
+	GLuint			getNUVs() const;
+
 private:
 	Mesh(void);
 
 	const aiScene	*_Scene;
 	GLfloat			*_Vertices;
-	size_t			_N_Vertices;
+	GLuint			_N_Vertices;
 	GLfloat			*_Normals;
-	size_t			_N_Normals;
+	GLuint			_N_Normals;
 	GLfloat			*_UVs;
-	size_t			_N_UVs;
+	GLuint			_N_UVs;
 
 };
 
