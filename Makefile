@@ -6,7 +6,7 @@
 #    By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 19:14:04 by rmc-coma          #+#    #+#              #
-#    Updated: 2018/03/21 04:59:14 by rmc-coma         ###   ########.fr        #
+#    Updated: 2018/03/21 05:01:39 by rmc-coma         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -95,11 +95,11 @@ $(BUILD): $(LIBS) $(OBJS)
 	@$(MAKE) -s -C $(@D) > /dev/null
 
 clean: clean_$(NAME) #clean_libs
+	@/bin/rm -rf $(OBJPATH)
 
 clean_$(NAME):
 	@echo "$(NAME): cleaning..."
 	@/bin/rm -f $(OBJS)
-	@/bin/rm -f $(OBJPATH)
 
 #clean_libs:
 #	@echo "$(NAME): cleaning libs..."
@@ -111,7 +111,7 @@ clean_$(NAME):
 
 fclean: clean_$(NAME) #fclean_libs
 	@/bin/rm -f $(BUILD)
-	@/bin/rm -f $(BUILPATH)
+	@/bin/rm -rf $(BUILDPATH)
 
 fuckoff: debug
 
