@@ -6,19 +6,18 @@
 //   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/21 00:26:24 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 01:38:59 by rmc-coma         ###   ########.fr       //
+//   Updated: 2018/03/21 04:32:00 by rmc-coma         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include "Mesh.class.hpp"
-#include <assimp/cimport.h>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
+#include <iostream>
 
 #define aisgl_min(x,y) (x<y?x:y)
 #define aisgl_max(x,y) (y>x?y:x)
 
-Mesh::Mesh(void) : _Vertices(NULL),
+Mesh::Mesh(void) : _Scene(NULL),
+				   _Vertices(NULL),
 				   _N_Vertices(0),
 				   _Normals(NULL),
 				   _N_Normals(0),
@@ -30,8 +29,13 @@ Mesh::Mesh(void) : _Vertices(NULL),
 
 Mesh::Mesh(const std::string &path) : Mesh()
 {
-	const struct aiScene* scene = NULL;
-	scene = aiImportFile(path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
+	if (!(this->_Scene = aiImportFile(path.c_str(),
+		aiProcess_CalcTangentSpace |
+		aiProcess_Triangulate |
+		aiProcess_JoinIdenticalVertices |
+		aiProcess_SortByPType)))
+		throw std::runtime_error(std::string("Failed to parse file ") + path);
+	std::cout << this->_Scene << std::endl;
 	return ;
 }
 
@@ -43,6 +47,14 @@ Mesh::Mesh(const Mesh &other) : Mesh()
 
 Mesh::~Mesh(void)
 {
+	if (this->_Scene)
+		aiReleaseImport(this->_Scene);
+	if (this->_N_Vertices)
+		delete [] this->_Vertices;
+	if (this->_N_Normals)
+		delete [] this->_Normals;
+	if (this->_N_UVs)
+		delete [] this->_UVs;
 	return ;
 }
 
