@@ -1,14 +1,14 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   Program.class.cpp                                  :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/21 10:14:52 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 11:15:36 by rmc-coma         ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Program.class.cpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/21 10:14:52 by rmc-coma          #+#    #+#             */
+/*   Updated: 2018/03/22 06:11:00 by rmc-coma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <vector>
 #include <iostream>
@@ -18,8 +18,7 @@
 
 Program::Program(void) : _GL_ID(0),
 						 _Vertex_Shader(*(new Shader(NULL, SHD_DEFAULT))),
-						 _Fragment_Shader(*(new Shader(NULL, SHD_DEFAULT))),
-						 _Attribs(0)
+						 _Fragment_Shader(*(new Shader(NULL, SHD_DEFAULT)))
 {
 	return ;
 }
@@ -27,8 +26,7 @@ Program::Program(void) : _GL_ID(0),
 Program::Program(const Shader &vertex, const Shader &fragment,
 				 const std::vector<std::string> attribs) : _GL_ID(0),
 														   _Vertex_Shader(vertex),
-														   _Fragment_Shader(fragment),
-														   _Attribs(attribs)
+														   _Fragment_Shader(fragment)
 {
 	GLuint	i;
 	GLint	linkError;
@@ -62,8 +60,7 @@ Program::Program(const Shader &vertex, const Shader &fragment,
 
 Program::Program(const Program &other) : _GL_ID(other._GL_ID),
 										 _Vertex_Shader(other._Vertex_Shader),
-										 _Fragment_Shader(other._Fragment_Shader),
-										 _Attribs(other._Attribs)
+										 _Fragment_Shader(other._Fragment_Shader)
 {
 	*this = other;
 	return ;

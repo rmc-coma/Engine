@@ -1,36 +1,38 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   MeshFilter.class.cpp                               :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/20 21:14:19 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 09:34:34 by rmc-coma         ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MeshFilter.class.cpp                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/20 21:14:19 by rmc-coma          #+#    #+#             */
+/*   Updated: 2018/03/22 08:42:26 by rmc-coma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "MeshFilter.class.hpp"
 #include "Mesh.class.hpp"
 #include "GameObject.class.hpp"
+#include "VBO.class.hpp"
+#include "VAO.class.hpp"
 
-MeshFilter::MeshFilter(void) : Component(*(new GameObject()), CMP_MESHFILTER),
+MeshFilter::MeshFilter(void) : Component(*(new GameObject(*(new Scene(*(new Window("kek", 0, 0, 0, 0, 0)))), "kek")), CMP_MESHFILTER),
 							   _Mesh(NULL),
-							   _VBO_ID(0)
+							   _VBO(NULL)
 {
 	return ;
 }
 
 MeshFilter::MeshFilter(const GameObject &gameobject) : Component(gameobject, CMP_MESHFILTER),
 													   _Mesh(NULL),
-													   _VBO_ID(0)
+													   _VBO(NULL)
 {
 	return ;
 }
 
 MeshFilter::MeshFilter(const GameObject &gameobject, Mesh &mesh) : Component(gameobject, CMP_MESHFILTER),
 																   _Mesh(&mesh),
-																   _VBO_ID(0)
+																   _VBO(NULL)
 {
 	this->setMesh(mesh);
 	return ;
@@ -44,8 +46,10 @@ MeshFilter::MeshFilter(const MeshFilter &other) : Component(other._GameObject, o
 
 MeshFilter::~MeshFilter(void)
 {
-	if (this->_Mesh && this->_VBO_ID)
-		glDeleteBuffers(1, &this->_VBO_ID);
+	if (this->_Mesh)
+		delete this->_Mesh;
+	if (this->_VBO)
+		delete this->_VBO;
 	return ;
 }
 
@@ -56,31 +60,23 @@ MeshFilter	&MeshFilter::operator=(const MeshFilter &other)
 }
 
 Mesh		*MeshFilter::getMesh(void) const	{ return (this->_Mesh); }
-GLuint		MeshFilter::getVBOID(void) const	{ return (this->_VBO_ID); }
+VBO			*MeshFilter::getVBO(void) const		{ return (this->_VBO); }
 
-void		MeshFilter::setMesh(Mesh &mesh)		{ this->_Mesh = &mesh; }
+void		MeshFilter::setMesh(Mesh &mesh)
+{
+	if (this->_VBO)
+		delete this->_VBO;
+	this->_Mesh = &mesh;
+	return ;
+}
 
 void		MeshFilter::Initialize(void)
 {
-	glGenBuffers(1, &this->_VBO_ID);
-	glBindBuffer(GL_ARRAY_BUFFER, this->_VBO_ID);
-	glBufferData(GL_ARRAY_BUFFER, this->_Mesh->getNVertices() * 3 * sizeof(GLfloat) +
-				 this->_Mesh->getNNormals() * 3 * sizeof(GLfloat) + 
-				 this->_Mesh->getNUVs() * 2 * sizeof(GLfloat), 0, GL_STATIC_DRAW);
-	glBufferSubData(GL_ARRAY_BUFFER,
-					0,
-					this->_Mesh->getNVertices() * 3 * sizeof(GLfloat),
-					this->_Mesh->getVertices());
-	glBufferSubData(GL_ARRAY_BUFFER,
-					this->_Mesh->getNVertices() * 3 * sizeof(GLfloat),
-					this->_Mesh->getNNormals() * 3 * sizeof(GLfloat),
-					this->_Mesh->getNormals());
-	glBufferSubData(GL_ARRAY_BUFFER,
-					this->_Mesh->getNVertices() * 3 * sizeof(GLfloat) +
-					this->_Mesh->getNNormals() * 3 * sizeof(GLfloat),
-					this->_Mesh->getNUVs() * 3 * sizeof(GLfloat),
-					this->_Mesh->getUVs());
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	if (!this->_VBO)
+		this->_VBO = new VBO(*this->_Mesh);
+	if (!this->_VAO)
+		this->_VAO = new VAO(*this->_VBO);
+	return ;
 }
 
 void		MeshFilter::Update(void)

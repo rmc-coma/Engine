@@ -1,16 +1,17 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   Scene.class.cpp                                    :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/20 05:26:43 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 00:11:47 by rmc-coma         ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Scene.class.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/20 05:26:43 by rmc-coma          #+#    #+#             */
+/*   Updated: 2018/03/22 09:38:33 by rmc-coma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdexcept>
+#include <algorithm>
 
 #include "Scene.class.hpp"
 #include "GameObject.class.hpp"
@@ -52,7 +53,23 @@ Scene	&Scene::operator=(const Scene &other)
 void			Scene::addGameObject(GameObject &gameobject)
 {
 	this->_GameObjects.push_back(&gameobject);
+	this->_Initializables.push_back(&gameobject);
+	this->_Updatables.push_back(&gameobject);
+	this->_Renderables.push_back(&gameobject);
 }
+
+void			Scene::addInitializable(IInitializable &initializable)			{ this->_Initializables.push_back(&initializable); }
+void			Scene::addUpdatable(IUpdatable &updatable)						{ this->_Updatables.push_back(&updatable); }
+void			Scene::addRenderable(IRenderable &renderable)					{ this->_Renderables.push_back(&renderable); }
+
+void			Scene::removeInitializable(const IInitializable &initializable)	{ this->_Initializables.erase(std::remove(this->_Initializables.begin(), this->_Initializables.end(), &initializable), this->_Initializables.end()); }
+void			Scene::removeUpdatable(const IUpdatable &updatable)				{ this->_Updatables.erase(std::remove(this->_Updatables.begin(), this->_Updatables.end(), &updatable), this->_Updatables.end()); }
+void			Scene::removeRenderable(const IRenderable &renderable)			{ this->_Renderables.erase(std::remove(this->_Renderables.begin(), this->_Renderables.end(), &renderable), this->_Renderables.end()); }
 
 SDL_GLContext	Scene::getGLContextPtr(void) const	{ return (this->_GLContext_Ptr); }
 
+void			Scene::Render(void)
+{
+	for (auto it = this->_GameObjects.begin(); it != this->_GameObjects.end(); ++it)
+		
+}

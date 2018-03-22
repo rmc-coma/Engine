@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 19:14:04 by rmc-coma          #+#    #+#              #
-#    Updated: 2018/03/21 11:05:44 by rmc-coma         ###   ########.fr        #
+#    Updated: 2018/03/22 08:50:10 by rmc-coma         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 .PHONY: all clean fclean clean_libs fclean_libs fclean_shaders \
 	re shaders debug set_debug_mode
@@ -57,7 +57,9 @@ SRCS =			\
 				MeshRenderer.class.cpp \
 				Camera.class.cpp \
 				Shader.class.cpp \
-				Program.class.cpp
+				Program.class.cpp \
+				VAO.class.cpp \
+				VBO.class.cpp \
 
 
 HDRS_FILES =	\
@@ -71,7 +73,12 @@ HDRS_FILES =	\
 				MeshRenderer.class.hpp \
 				Camera.class.hpp \
 				Shader.class.hpp \
-				Program.class.hpp
+				Program.class.hpp \
+				VAO.class.hpp \
+				VBO.class.hpp \
+				IRenderable.class.hpp \
+				IUpdatable.class.hpp \
+				IInitializable.class.hpp
 
 HDRS =			$(HDRS_FILES:%=$(HDRPATH)%)
 OBJS =			$(SRCS:%.cpp=$(OBJPATH)%.o)

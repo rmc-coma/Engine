@@ -33,7 +33,6 @@ private:
 	GLuint							_GL_ID;
 	const Shader					&_Vertex_Shader;
 	const Shader					&_Fragment_Shader;
-	const std::vector<std::string>	_Attribs;
 
 
 };

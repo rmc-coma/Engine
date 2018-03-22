@@ -1,28 +1,27 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   MeshRenderer.class.hpp                             :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/21 06:55:11 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 09:35:58 by rmc-coma         ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MeshRenderer.class.hpp                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/21 06:55:11 by rmc-coma          #+#    #+#             */
+/*   Updated: 2018/03/22 09:24:32 by rmc-coma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MESHRENDERER_CLASS_HPP
 # define MESHRENDERER_CLASS_HPP
 
-# include "Component.class.hpp"
+# include <vector>
+# include <string>
+
 # include <OpenGL/gl3.h>
 
-# ifndef BUFFER_OFFSET
-#  define BUFFER_OFFSET(offset) ((char*)NULL + (offset))
-# endif
+# include "Component.class.hpp"
+# include "Program.class.hpp"
 
-class Mesh;
-
-class MeshRenderer : public Component {
+class MeshRenderer : public Component, public IRenderable {
 public:
 	MeshRenderer(const GameObject &gameobject);
 	MeshRenderer(const MeshRenderer &other);
@@ -30,13 +29,18 @@ public:
 
 	MeshRenderer		&operator=(const MeshRenderer &other);
 
+	void				insertIntoScene(Scene &scene);
+
 	void				Initialize(void);
 	void				Update(void);
+	void				Render(void);
 
 private:
 	MeshRenderer(void);
+	
 
-	GLuint				_VAO_ID;
+	Program							*_Program;
+
 };
 
 #endif

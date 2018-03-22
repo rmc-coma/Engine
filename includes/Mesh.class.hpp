@@ -1,14 +1,14 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   Mesh.class.hpp                                     :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/21 00:25:28 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 06:53:59 by rmc-coma         ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Mesh.class.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/21 00:25:28 by rmc-coma          #+#    #+#             */
+/*   Updated: 2018/03/22 01:21:10 by rmc-coma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MESH_CLASS_HPP
 # define MESH_CLASS_HPP
@@ -28,6 +28,10 @@ public:
 	~Mesh(void);
 
 	Mesh	&operator=(const Mesh &other);
+
+	bool			hasVertices() const;
+	bool			hasNormals() const;
+	bool			hasUVs() const;
 
 	GLfloat			*getVertices() const;
 	GLuint			getNVertices() const;

@@ -1,14 +1,14 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   Mesh.class.cpp                                     :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/21 00:26:24 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 06:53:48 by rmc-coma         ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Mesh.class.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/21 00:26:24 by rmc-coma          #+#    #+#             */
+/*   Updated: 2018/03/22 05:33:19 by rmc-coma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <iostream>
 
@@ -18,8 +18,8 @@
 
 #include "Mesh.class.hpp"
 
-#define aisgl_min(x,y) (x<y?x:y)
-#define aisgl_max(x,y) (y>x?y:x)
+#define aisgl_min(x, y) (x < y ? x : y)
+#define aisgl_max(x, y) (y > x ? y : x)
 
 Mesh::Mesh(void) : _Scene(NULL),
 				   _Vertices(NULL),
@@ -63,7 +63,6 @@ Mesh::Mesh(const std::string &path) : Mesh()
 	size_t	x = 0;
 	size_t	y = 0;
 	size_t	z = 0;
-
 	for (size_t i = 0; i < this->_Scene->mNumMeshes; ++i)
 	{
 		for (size_t j = 0; j < this->_Scene->mMeshes[i]->mNumFaces; ++j)
@@ -136,6 +135,10 @@ Mesh	&Mesh::operator=(const Mesh &other)
 	this->_N_UVs = other._N_UVs;
 	return (*this);
 }
+
+bool	Mesh::hasVertices() const	{ return (this->_N_Vertices && this->_Vertices); }
+bool	Mesh::hasNormals() const	{ return (this->_N_Normals && this->_Normals); }
+bool	Mesh::hasUVs() const		{ return (this->_N_UVs && this->_UVs); }
 
 GLfloat	*Mesh::getVertices() const	{ return (this->_Vertices); }
 GLuint	Mesh::getNVertices() const	{ return (this->_N_Vertices); }

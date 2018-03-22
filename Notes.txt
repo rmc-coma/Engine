@@ -1,0 +1,1 @@
+- Component needs to be an abstract class, rework it in order to have it make a better coffee

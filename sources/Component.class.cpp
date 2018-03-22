@@ -1,19 +1,19 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   Component.class.cpp                                :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/20 20:49:22 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 08:26:00 by rmc-coma         ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Component.class.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/20 20:49:22 by rmc-coma          #+#    #+#             */
+/*   Updated: 2018/03/22 09:39:51 by rmc-coma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "GameObject.class.hpp"
 #include "Component.class.hpp"
 
-Component::Component(void) : _GameObject(*(new GameObject())),
+Component::Component(void) : _GameObject(*(new GameObject(*(new Scene(*(new Window("kek", 0, 0, 0, 0, 0)))), "kek"))),
 							 _Type(CMP_DEFAULT)
 {
 	return ;
@@ -22,6 +22,7 @@ Component::Component(void) : _GameObject(*(new GameObject())),
 Component::Component(const GameObject &gameobject, const t_component_type type) : _GameObject(gameobject),
 																				  _Type(type)
 {
+	gameobject.addComponent(*this);
 	return ;
 }
 
@@ -44,6 +45,18 @@ Component			&Component::operator=(const Component &other)
 }
 
 t_component_type	Component::getType(void) const	{ return (this->_Type); }
+
+void				Component::insertIntoScene(Scene &scene)
+{
+	scene.addInitializable(this);
+	scene.addUpdatable(this);
+}
+
+void				Component::removeFromScene(Scene &scene)
+{
+	scene.removeInitializable(this);
+	scene.removeUpdatable(this);
+}
 
 void				Component::Initialize(void)
 {
