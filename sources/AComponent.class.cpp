@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Component.class.cpp                                :+:      :+:    :+:   */
+/*   AComponent.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,59 +11,47 @@
 /* ************************************************************************** */
 
 #include "GameObject.class.hpp"
-#include "Component.class.hpp"
+#include "AAComponent.class.hpp"
 
-Component::Component(void) : _GameObject(*(new GameObject(*(new Scene(*(new Window("kek", 0, 0, 0, 0, 0)))), "kek"))),
+AComponent::AComponent(void) : _GameObject(*(new GameObject(*(new Scene(*(new Window("kek", 0, 0, 0, 0, 0)))), "kek"))),
 							 _Type(CMP_DEFAULT)
 {
 	return ;
 }
 
-Component::Component(const GameObject &gameobject, const t_component_type type) : _GameObject(gameobject),
+AComponent::AComponent(const GameObject &gameobject, const t_AComponent_type type) : _GameObject(gameobject),
 																				  _Type(type)
 {
-	gameobject.addComponent(*this);
+	gameobject.addAComponent(*this);
 	return ;
 }
 
-Component::Component(const Component &other) : _GameObject(other._GameObject),
+AComponent::AComponent(const AComponent &other) : _GameObject(other._GameObject),
 											   _Type(other._Type)
-{
+
 	*this = other;
 	return ;
 }
 
-Component::~Component(void)
+AComponent::~AComponent(void)
 {
 	return ;
 }
 
-Component			&Component::operator=(const Component &other)
+AComponent			&AComponent::operator=(const AComponent &other)
 {
 	(void)other;
 	return (*this);
 }
 
-t_component_type	Component::getType(void) const	{ return (this->_Type); }
+t_AComponent_type	AComponent::getType(void) const	{ return (this->_Type); }
 
-void				Component::insertIntoScene(Scene &scene)
-{
-	scene.addInitializable(this);
-	scene.addUpdatable(this);
-}
-
-void				Component::removeFromScene(Scene &scene)
-{
-	scene.removeInitializable(this);
-	scene.removeUpdatable(this);
-}
-
-void				Component::Initialize(void)
+void				AComponent::Initialize(void)
 {
 	return ;
 }
 
-void				Component::Update(void)
+void				AComponent::Update(void)
 {
 	return ;
 }

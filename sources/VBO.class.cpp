@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 11:38:02 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/22 06:21:56 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/23 06:19:52 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ VBO::VBO(const Mesh &mesh) : _GL_ID(0),
 	if (mesh.hasVertices())
 	{
 		vbod.attrib = std::string(ATTRIB_VERTICES_NAME);
-		vbod.n_components = ATTRIB_VERTICES_SIZE;
+		vbod.n_AComponents = ATTRIB_VERTICES_SIZE;
 		vbod.data = static_cast<void *>(mesh.getVertices());
-		vbod.size = static_cast<GLuint>(mesh.getNVertices() * vbod.n_components * sizeof(GLfloat));
+		vbod.size = static_cast<GLuint>(mesh.getNVertices() * vbod.n_AComponents * sizeof(GLfloat));
 		vbod.offset = offset;
 		offset += vbod.size;
 		this->_Data.push_back(vbod);
@@ -46,9 +46,9 @@ VBO::VBO(const Mesh &mesh) : _GL_ID(0),
 	if (mesh.hasNormals())
 	{
 		vbod.attrib = ATTRIB_NORMALS_NAME;
-		vbod.n_components = ATTRIB_NORMALS_SIZE;
+		vbod.n_AComponents = ATTRIB_NORMALS_SIZE;
 		vbod.data = static_cast<void *>(mesh.getNormals());
-		vbod.size = static_cast<GLuint>(mesh.getNNormals() * vbod.n_components * sizeof(GLfloat));
+		vbod.size = static_cast<GLuint>(mesh.getNNormals() * vbod.n_AComponents * sizeof(GLfloat));
 		vbod.offset = offset;
 		offset += vbod.size;
 		this->_Data.push_back(vbod);
@@ -56,9 +56,9 @@ VBO::VBO(const Mesh &mesh) : _GL_ID(0),
 	if (mesh.hasUVs())
 	{
 		vbod.attrib = ATTRIB_UVS_NAME;
-		vbod.n_components = ATTRIB_UVS_SIZE;
+		vbod.n_AComponents = ATTRIB_UVS_SIZE;
 		vbod.data = static_cast<void *>(mesh.getUVs());
-		vbod.size = static_cast<GLuint>(mesh.getNUVs() * vbod.n_components * sizeof(GLfloat));
+		vbod.size = static_cast<GLuint>(mesh.getNUVs() * vbod.n_AComponents * sizeof(GLfloat));
 		vbod.offset = offset;
 		offset += vbod.size;
 		this->_Data.push_back(vbod);

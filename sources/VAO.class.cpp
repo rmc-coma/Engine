@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 11:38:02 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/22 06:22:24 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/23 06:19:56 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ VAO::VAO(const VBO &vbo) : _GL_ID(0),
 	GLuint	i = 0;
 	for (auto it = VBO_Data.begin(); it != VBO_Data.end(); ++it)
 	{
-		glVertexAttribPointer(i, it->n_components, GL_FLOAT, GL_FALSE, 0,
+		glVertexAttribPointer(i, it->n_AComponents, GL_FLOAT, GL_FALSE, 0,
 			BUFFER_OFFSET(it->offset));
 		glEnableVertexAttribArray(i++);
 	}

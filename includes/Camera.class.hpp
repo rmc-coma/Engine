@@ -1,23 +1,23 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   Camera.class.hpp                                   :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/21 08:43:59 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 09:37:27 by rmc-coma         ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Camera.class.hpp                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/21 08:43:59 by rmc-coma          #+#    #+#             */
+/*   Updated: 2018/03/23 04:57:30 by rmc-coma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CAMERA_CLASS_HPP
 # define CAMERA_CLASS_HPP
 
-# include "Component.class.hpp"
+# include "AComponent.class.hpp"
 
 # include <OpenGL/gl3.h>
 
-class Camera : public Component {
+class Camera : public AComponent {
 public:
 	Camera(const GameObject &gameobject);
 	Camera(const GameObject &gameobject, const GLfloat fov, const GLfloat near,

@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 11:34:37 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/22 06:21:48 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/23 06:04:46 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_vbo_data
 {
 	std::string			attrib;
 	const void			*data;
-	GLint				n_components;
+	GLint				n_AComponents;
 	GLuint				size;
 	GLuint				offset;
 }				t_vbo_data;

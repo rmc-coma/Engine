@@ -1,55 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Component.class.hpp                                :+:      :+:    :+:   */
+/*   AAComponent.class.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 20:49:21 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/22 09:30:14 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/23 04:53:29 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPONENT_CLASS_HPP
-# define COMPONENT_CLASS_HPP
+#ifndef AComponent_CLASS_HPP
+# define AComponent_CLASS_HPP
 
-# include "Component.class.hpp"
 # include "IInitializable.class.hpp"
 # include "IUpdatable.class.hpp"
 
 class GameObject;
 
-typedef	enum	e_component_type
+typedef	enum	e_AComponent_type
 {
 	CMP_DEFAULT = 0,
 	CMP_MESHFILTER,
 	CMP_MESHRENDERER,
 	CMP_CAMERA
-}				t_component_type;
+}				t_AComponent_type;
 
-class Component : public IInitializable, public IUpdatable {
+class AComponent : public IInitializable, public IUpdatable {
 
 public:
-	Component(const GameObject &gameobject, const t_component_type type);
-	Component(const Component &other);
-	virtual ~Component(void);
+	virtual ~AComponent(void);
 
-	Component				&operator=(const Component &other);
+	AComponent				&operator=(const AComponent &other);
 
-	t_component_type		getType(void) const;
-
-	virtual void			insertIntoScene(Scene &scene);
-	virtual void			removeFromScene(Scene &scene);
+	t_AComponent_type		getType(void) const;
 
 	virtual void			Initialize(void);
 	virtual void			Update(void);
 
 protected:
-	const GameObject		&_GameObject;
-	const t_component_type	_Type;
+	AComponent(const GameObject &gameobject, const t_AComponent_type type);
+	AComponent(const AComponent &other);
 
-private:
-	Component(void);
+	const GameObject		&_GameObject;
+	const t_AComponent_type	_Type;
+
+private:	AComponent(void);
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 21:14:19 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/22 08:42:26 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/23 06:04:37 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 #include "VBO.class.hpp"
 #include "VAO.class.hpp"
 
-MeshFilter::MeshFilter(void) : Component(*(new GameObject(*(new Scene(*(new Window("kek", 0, 0, 0, 0, 0)))), "kek")), CMP_MESHFILTER),
+MeshFilter::MeshFilter(void) : AComponent(*(new GameObject(*(new Scene(*(new Window("kek", 0, 0, 0, 0, 0)))), "kek")), CMP_MESHFILTER),
 							   _Mesh(NULL),
 							   _VBO(NULL)
 {
 	return ;
 }
 
-MeshFilter::MeshFilter(const GameObject &gameobject) : Component(gameobject, CMP_MESHFILTER),
+MeshFilter::MeshFilter(const GameObject &gameobject) : AComponent(gameobject, CMP_MESHFILTER),
 													   _Mesh(NULL),
 													   _VBO(NULL)
 {
 	return ;
 }
 
-MeshFilter::MeshFilter(const GameObject &gameobject, Mesh &mesh) : Component(gameobject, CMP_MESHFILTER),
+MeshFilter::MeshFilter(const GameObject &gameobject, Mesh &mesh) : AComponent(gameobject, CMP_MESHFILTER),
 																   _Mesh(&mesh),
 																   _VBO(NULL)
 {
@@ -38,7 +38,7 @@ MeshFilter::MeshFilter(const GameObject &gameobject, Mesh &mesh) : Component(gam
 	return ;
 }
 
-MeshFilter::MeshFilter(const MeshFilter &other) : Component(other._GameObject, other._Type)
+MeshFilter::MeshFilter(const MeshFilter &other) : AComponent(other._GameObject, other._Type)
 {
 	*this = other;
 	return ;

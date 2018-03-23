@@ -6,7 +6,7 @@
 #    By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 19:14:04 by rmc-coma          #+#    #+#              #
-#    Updated: 2018/03/22 08:50:10 by rmc-coma         ###   ########.fr        #
+#    Updated: 2018/03/23 06:04:41 by rmc-coma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRCS =			\
 				Window.class.cpp \
 				Scene.class.cpp \
 				GameObject.class.cpp \
-				Component.class.cpp \
+				AComponent.class.cpp \
 				MeshFilter.class.cpp \
 				Mesh.class.cpp \
 				MeshRenderer.class.cpp \
@@ -67,7 +67,7 @@ HDRS_FILES =	\
 				Window.class.hpp \
 				Scene.class.hpp \
 				GameObject.class.hpp \
-				Component.class.hpp \
+				AComponent.class.hpp \
 				MeshFilter.class.hpp \
 				Mesh.class.hpp \
 				MeshRenderer.class.hpp \
