@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 21:14:20 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/23 04:57:33 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/24 20:24:43 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ public:
 
 	Mesh				*getMesh(void) const;
 	VBO					*getVBO(void) const;
+	VAO					*getVAO(void) const;
 
 	void				setMesh(Mesh &mesh);
 
@@ -44,9 +45,9 @@ public:
 private:
 	MeshFilter(void);
 
-	Mesh							*_Mesh;
-	VBO								*_VBO;
-	VAO								*_VAO;
+	Mesh				*_Mesh;
+	VBO					*_VBO;
+	VAO					*_VAO;
 
 
 };

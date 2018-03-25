@@ -1,14 +1,14 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   Shader.class.hpp                                   :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: rmc-coma <marvin@42.fr>                    +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2018/03/21 09:43:45 by rmc-coma          #+#    #+#             //
-//   Updated: 2018/03/21 11:06:27 by rmc-coma         ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Shader.class.hpp                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/21 09:43:45 by rmc-coma          #+#    #+#             */
+/*   Updated: 2018/03/24 20:45:53 by rmc-coma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef SHADER_CLASS_HPP
 # define SHADER_CLASS_HPP
@@ -28,10 +28,13 @@ class Shader {
 
 public:
 	Shader(const std::string &path, const t_shader_type type);
+	Shader(const std::string sourcecode, const t_shader_type type);
 	Shader(const Shader &other);
 	~Shader(void);
 
 	Shader	&operator=(const Shader &other);
+
+	void	compile(void);
 
 	GLuint	getGL_ID(void) const;
 

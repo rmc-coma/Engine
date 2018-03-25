@@ -11,24 +11,24 @@
 /* ************************************************************************** */
 
 #include "GameObject.class.hpp"
-#include "AAComponent.class.hpp"
+#include "AComponent.class.hpp"
 
 AComponent::AComponent(void) : _GameObject(*(new GameObject(*(new Scene(*(new Window("kek", 0, 0, 0, 0, 0)))), "kek"))),
-							 _Type(CMP_DEFAULT)
+							   _Type(CMP_DEFAULT)
 {
 	return ;
 }
 
 AComponent::AComponent(const GameObject &gameobject, const t_AComponent_type type) : _GameObject(gameobject),
-																				  _Type(type)
+																				  	 _Type(type)
 {
-	gameobject.addAComponent(*this);
+	//gameobject.addAComponent(*this);
 	return ;
 }
 
 AComponent::AComponent(const AComponent &other) : _GameObject(other._GameObject),
-											   _Type(other._Type)
-
+											   	  _Type(other._Type)
+{
 	*this = other;
 	return ;
 }

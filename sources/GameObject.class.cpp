@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 00:42:47 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/23 10:26:16 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/24 20:22:09 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,22 @@ void		GameObject::addChild(GameObject &child)
 	return ;
 }
 
-void		GameObject::addAComponent(AComponent &AComponent)
+template<typename T>
+T			*GameObject::createComponent(void)
 {
-	this->_AComponents.push_back(&AComponent);
-	AComponent.insertIntoScene(this->_Scene);
-	return ;
+	T	*component;
+
+	component = new T(*this);
+	this->_AComponents.push_back(component);
+	return (component);
 }
 
-AComponent	*GameObject::getAComponent(const t_AComponent_type type) const
+template<typename T>
+T			*GameObject::getComponent(void) const
 {
 	for (auto it = this->_AComponents.begin(); it != this->_AComponents.end(); ++it)
 	{
-		if ((*it)->getType() == type)
+		if (typeid(*it) == typeid(T))
 			return (*it);
 	}
 	return (NULL);
@@ -79,13 +83,13 @@ AComponent	*GameObject::getAComponent(const t_AComponent_type type) const
 void		GameObject::Initialize(void)
 {
 	for (auto it = this->_AComponents.begin(); it != this->_AComponents.end(); ++it)
-		it->Initialize();
+		(*it)->Initialize();
 	return ;
 }
 
 void		GameObject::Update(void)
 {
 	for (auto it = this->_AComponents.begin(); it != this->_AComponents.end(); ++it)
-		it->Update();
+		(*it)->Update();
 	return ;
 }

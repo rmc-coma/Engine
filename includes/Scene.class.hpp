@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 05:25:33 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/23 10:23:22 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/24 15:21:21 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 // Local includes
 # include "Window.class.hpp"
-# include "IRenderable.class.hpp"
+# include "IInitializable.class.hpp"
+# include "IUpdatable.class.hpp"
 
 class GameObject;
 

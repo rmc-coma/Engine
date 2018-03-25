@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 06:55:11 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/23 06:04:47 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/25 03:45:22 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 # include "AComponent.class.hpp"
 # include "Program.class.hpp"
 
-class MeshRenderer : public AComponent, public IRenderable {
+class Shader;
+class Program;
+
+class MeshRenderer : public AComponent {
 public:
 	MeshRenderer(const GameObject &gameobject);
 	MeshRenderer(const MeshRenderer &other);
@@ -29,17 +32,20 @@ public:
 
 	MeshRenderer		&operator=(const MeshRenderer &other);
 
-	void				insertIntoScene(Scene &scene);
-
 	void				Initialize(void);
 	void				Update(void);
-	void				Render(void);
 
 private:
 	MeshRenderer(void);
-	
 
-	Program							*_Program;
+	static std::string	assembleShaderSources(std::vector<std::string> header, std::vector<std::string> body);
+
+	std::string			bakeVertexShader(void);
+	std::string			bakeFragmentShader(void);
+	
+	Shader				*_Vertex;
+	Shader				*_Fragment;			
+	Program				*_Program;
 
 };
 

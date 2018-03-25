@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 05:26:43 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/23 10:22:29 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/24 15:22:17 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ SDL_GLContext	Scene::getGLContextPtr(void) const	{ return (this->_GLContext_Ptr)
 void			Scene::Initialize(void)
 {
 	for (auto it = this->_GameObjects.begin(); it != this->_GameObjects.end(); ++it)
-		it->Initialize();
+		(*it)->Initialize();
 }
 
 void			Scene::Update(void)
 {
 	for (auto it = this->_GameObjects.begin(); it != this->_GameObjects.end(); ++it)
-		it->Update();
+		(*it)->Update();
 }

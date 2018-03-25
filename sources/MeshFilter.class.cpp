@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 21:14:19 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/23 06:04:37 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/24 20:25:05 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 #include "VBO.class.hpp"
 #include "VAO.class.hpp"
 
-MeshFilter::MeshFilter(void) : AComponent(*(new GameObject(*(new Scene(*(new Window("kek", 0, 0, 0, 0, 0)))), "kek")), CMP_MESHFILTER),
+MeshFilter::MeshFilter(void) : AComponent(*(new GameObject(*(new Scene(*(new Window("kek", 0, 0, 0, 0, 0)))), "kek"))),
 							   _Mesh(NULL),
 							   _VBO(NULL)
 {
 	return ;
 }
 
-MeshFilter::MeshFilter(const GameObject &gameobject) : AComponent(gameobject, CMP_MESHFILTER),
+MeshFilter::MeshFilter(const GameObject &gameobject) : AComponent(gameobject),
 													   _Mesh(NULL),
 													   _VBO(NULL)
 {
 	return ;
 }
 
-MeshFilter::MeshFilter(const GameObject &gameobject, Mesh &mesh) : AComponent(gameobject, CMP_MESHFILTER),
+MeshFilter::MeshFilter(const GameObject &gameobject, Mesh &mesh) : AComponent(gameobject),
 																   _Mesh(&mesh),
 																   _VBO(NULL)
 {
@@ -38,7 +38,7 @@ MeshFilter::MeshFilter(const GameObject &gameobject, Mesh &mesh) : AComponent(ga
 	return ;
 }
 
-MeshFilter::MeshFilter(const MeshFilter &other) : AComponent(other._GameObject, other._Type)
+MeshFilter::MeshFilter(const MeshFilter &other) : AComponent(other._GameObject)
 {
 	*this = other;
 	return ;
@@ -59,8 +59,10 @@ MeshFilter	&MeshFilter::operator=(const MeshFilter &other)
 	return (*this);
 }
 
+
 Mesh		*MeshFilter::getMesh(void) const	{ return (this->_Mesh); }
 VBO			*MeshFilter::getVBO(void) const		{ return (this->_VBO); }
+VAO			*MeshFilter::getVAO(void) const		{ return (this->_VAO); }
 
 void		MeshFilter::setMesh(Mesh &mesh)
 {

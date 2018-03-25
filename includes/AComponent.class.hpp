@@ -18,32 +18,21 @@
 
 class GameObject;
 
-typedef	enum	e_AComponent_type
-{
-	CMP_DEFAULT = 0,
-	CMP_MESHFILTER,
-	CMP_MESHRENDERER,
-	CMP_CAMERA
-}				t_AComponent_type;
-
 class AComponent : public IInitializable, public IUpdatable {
 
 public:
+	AComponent(const AComponent &other);
 	virtual ~AComponent(void);
 
 	AComponent				&operator=(const AComponent &other);
-
-	t_AComponent_type		getType(void) const;
 
 	virtual void			Initialize(void);
 	virtual void			Update(void);
 
 protected:
-	AComponent(const GameObject &gameobject, const t_AComponent_type type);
-	AComponent(const AComponent &other);
+	AComponent(const GameObject &gameobject);
 
 	const GameObject		&_GameObject;
-	const t_AComponent_type	_Type;
 
 private:	AComponent(void);
 

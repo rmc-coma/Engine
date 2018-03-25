@@ -6,7 +6,7 @@
 #    By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 19:14:04 by rmc-coma          #+#    #+#              #
-#    Updated: 2018/03/23 06:04:41 by rmc-coma         ###   ########.fr        #
+#    Updated: 2018/03/24 15:19:49 by rmc-coma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,6 @@ HDRS_FILES =	\
 				Program.class.hpp \
 				VAO.class.hpp \
 				VBO.class.hpp \
-				IRenderable.class.hpp \
 				IUpdatable.class.hpp \
 				IInitializable.class.hpp
 

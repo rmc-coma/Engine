@@ -6,7 +6,7 @@
 /*   By: rmc-coma <rmc-coma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 08:45:23 by rmc-coma          #+#    #+#             */
-/*   Updated: 2018/03/22 08:46:33 by rmc-coma         ###   ########.fr       */
+/*   Updated: 2018/03/24 15:21:37 by rmc-coma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 class IInitializable {
 public:
-    virtual         ~Initializable(void);
-    virtual void    Initialize(void) const = 0;
+    virtual         ~IInitializable(void);
+    virtual void    Initialize(void) = 0;
 };
 
 #endif
